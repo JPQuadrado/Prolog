@@ -1,0 +1,74 @@
+:- dynamic feiticeiro/1.
+
+elfo_domestico(dobby).
+
+bruxo(hermione).
+bruxo('McGonagall').
+bruxo(rita_skeeter).
+
+magico(X):- elfo_domestico(X).
+magico(X):- feiticeiro(X).
+magico(X):- bruxo(X).
+
+/*
+    Ex.5
+
+    mágico(elfo_domestico).
+        False.
+
+    porem se a pergunta é mágico(dobby).
+    obteremos a resposta: True
+
+    Ex.6
+
+    feiticeiro(harry).
+        False.
+
+    pois não há nenhum fato para comprovar q harry é fenticeiro.
+
+    Ex.7
+
+    mágico(feiticeiro).
+        False.
+
+    Ex.8
+
+    magico('McGonagall').
+        True.
+
+    Ex.9
+
+    magico(Hermione).
+
+    listara todos os magicos, pois como Hermione tem o H maiusculo, é variavel.
+
+    ?- magico(Hermione).
+    Hermione = dobby ;
+    Hermione = hermione ;
+    Hermione = 'McGonagall' ;
+    Hermione = rita_skeeter.
+
+    Supondo que a chamada esperada era: mágico(hermione).
+    Vamos criar essa arvores.
+
+    mágico(hermione).
+
+    magico(X):- elfo_domestico(X).
+        X = hermione.
+        elfo_domestico(X).
+        não há hermione.
+        Morre a busca.
+    
+    magico(X):- feiticeiro(X).
+        X = hermione.
+        feiticeiro(X).
+        não há hermione.
+        Morre a busca.
+
+    magico(X):- bruxo(X).
+        X = hermione.
+        bruxo(X)
+        bruxo(hermione). -> FATO.
+        retorna True.
+
+*/
